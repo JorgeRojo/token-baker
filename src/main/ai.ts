@@ -1,8 +1,8 @@
-import { pipeline } from '@xenova/transformers'
+import { pipeline, TextGenerationPipeline } from '@xenova/transformers'
 
-let generator: any
+let generator: TextGenerationPipeline | undefined
 
-export async function loadModel() {
+export async function loadModel(): Promise<void> {
   if (!generator) {
     generator = await pipeline('text-generation', 'Xenova/distilgpt2')
   }
@@ -11,6 +11,7 @@ export async function loadModel() {
 export async function generateTokens(prompt: string): Promise<string[]> {
   if (!generator) {
     await loadModel()
+    return []
   }
 
   const output = await generator(prompt, {
@@ -21,7 +22,5 @@ export async function generateTokens(prompt: string): Promise<string[]> {
     top_p: 0.95
   })
 
-  // Assuming the output is an array of strings or can be parsed as such
-  // You might need to adjust this based on the actual model output format
   return output[0].generated_text.split(/\s*,\s*/).filter(Boolean)
 }
