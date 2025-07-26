@@ -7,12 +7,16 @@
   "scripts": {
     "start": "electron-forge start",
     "lint": "eslint --ext .ts,.tsx .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "build:mac": "npm run build -- --mac",
+    "build:win": "npm run build -- --win",
+    "build:linux": "npm run build -- --linux",
+    "generate-icons": "electron-icon-builder --input=src/assets/srcIcon.png --output=src/assets --flatten"
   },
   "keywords": [],
   "author": {
     "name": "Jorge Rojo",
-    "email": "jrojo@redpoints.com"
+    "email": "jorge.rojodiseno@gmail.com"
   },
   "license": "MIT",
   "devDependencies": {
@@ -32,6 +36,7 @@
     "@vitejs/plugin-react": "^4.7.0",
     "electron": "37.2.4",
     "electron-builder": "^26.0.12",
+    "electron-icon-builder": "^2.0.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
