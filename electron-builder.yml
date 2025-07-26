@@ -1,14 +1,49 @@
-appId: com.example.app
-productName: Design Tokens Builder
+appId: design-tokens-builder
+productName: design-tokens-builder
+directories:
+  buildResources: build
 files:
-  - "**/*"
-icon: src/assets/icons/256x256.png
-mac:
-  target: dmg
-  icon: src/assets/icons/icon.icns
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+asarUnpack:
+  - resources/**
+icon: build/icons/256x256.png
 win:
-  target: nsis
-  icon: src/assets/icons/icon.ico
+  executableName: design-tokens-builder
+  icon: build/icons/icon.ico
+nsis:
+  artifactName: ${name}-${version}-setup.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+mac:
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    - NSCameraUsageDescription: Application requests access to the device's camera.
+    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
+    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
+    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+  notarize: false
+  icon: build/icons/icon.icns
+dmg:
+  artifactName: ${name}-${version}.${ext}
+  icon: build/icons/icon.icns
 linux:
-  target: ["deb", "snap"]
-  icon: src/assets/icons/png/512x512.png
+  target:
+    - snap
+    - deb
+  maintainer: electronjs.org
+  category: Utility
+  icon: build/icons/png/512x512.png
+appImage:
+  artifactName: ${name}-${version}.${ext}
+npmRebuild: false
+publish:
+  provider: generic
+  url: https://example.com/auto-updates
+electronDownload:
+  mirror: https://npmmirror.com/mirrors/electron/

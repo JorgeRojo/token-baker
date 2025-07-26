@@ -1,7 +1,7 @@
-import React from "react";
-import { Button, ColorSchemeProvider, ColorSchemeSwitcher } from "fratch-ui";
+import { Button, ColorSchemeProvider, ColorSchemeSwitcher } from 'fratch-ui'
+import Versions from './components/Versions'
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
   return (
     <ColorSchemeProvider>
       <div>
@@ -9,7 +9,10 @@ export const App: React.FC = () => {
         <h1>Design Tokens Builder</h1>
         <p>The application has started successfully with React.</p>
         <Button type="tertiary">Fratch-UI Button</Button>
+        <Versions />
       </div>
     </ColorSchemeProvider>
-  );
-};
+  )
+}
+
+export default App
