@@ -1,11 +1,11 @@
-# design-tokens-builder 🎨🤖
+# Token Baker 🎨🤖
 
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](LICENSE.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > ✨ Accelerate your design system workflow. An AI-powered editor that helps you build, manage, and refine your design tokens from a simple prompt.
 
-**design-tokens-builder** is a desktop utility that serves as an intelligent editor and manager for your design tokens. It helps designers and developers create consistent, structured token files by combining a file editor with an AI assistant. You can load an existing `tokens.json` file, describe a new UI component, and use a conversational AI loop to generate, refine, and add the exact token names you need.
+**Token Baker** is a desktop utility that serves as an intelligent editor and manager for your design tokens. It helps designers and developers create consistent, structured token files by combining a file editor with an AI assistant. You can load an existing `tokens.json` file, describe a new UI component, and use a conversational AI loop to generate, refine, and add the exact token names you need.
 
 ## Key Features
 
@@ -39,8 +39,8 @@ Follow these instructions to get a copy of the project up and running on your lo
 1.  **Clone the repository:**
 
     ```sh
-    git clone [https://github.com/JorgeRojo/design-tokens-builder.git](https://github.com/JorgeRojo/design-tokens-builder.git)
-    cd design-tokens-builder
+    git clone [https://github.com/JorgeRojo/Token Baker.git](https://github.com/JorgeRojo/Token Baker.git)
+    cd Token Baker
     ```
 
 2.  **Install dependencies:**

@@ -1,4 +1,4 @@
-# Contributing to design-tokens-builder
+# Contributing to token-baker
 
 First off, thank you for considering contributing! We love our community and are grateful for every contribution, from fixing typos to adding major features.
 
@@ -26,14 +26,14 @@ To ensure a smooth process, please follow these steps for submitting code change
 2.  **Clone Your Fork:** Clone your forked repository to your local machine.
 
     ```sh
-    git clone [https://github.com/YOUR_USERNAME/design-tokens-builder.git](https://github.com/YOUR_USERNAME/design-tokens-builder.git)
-    cd design-tokens-builder
+    git clone [https://github.com/YOUR_USERNAME/token-baker.git](https://github.com/YOUR_USERNAME/token-baker.git)
+    cd token-baker
     ```
 
 3.  **Configure Upstream Remote:** Add the original repository as an "upstream" remote. This makes it easier to sync changes.
 
     ```sh
-    git remote add upstream [https://github.com/JorgeRojo/design-tokens-builder.git](https://github.com/JorgeRojo/design-tokens-builder.git)
+    git remote add upstream [https://github.com/JorgeRojo/token-baker.git](https://github.com/JorgeRojo/token-baker.git)
     ```
 
 4.  **Create Your Branch from `develop`:** Before starting any work, make sure your local `develop` branch is up to date with the main project, and then create your new branch from it. Use a descriptive prefix like `feature/`, `bugfix/`, or `docs/`.
@@ -82,6 +82,6 @@ To ensure a smooth process, please follow these steps for submitting code change
     git push origin feature/your-amazing-feature
     ```
 
-9.  **Open a Pull Request:** Go to the original `design-tokens-builder` repository on GitHub and open a new Pull Request. **Ensure the base branch is set to `develop`**, not `main`. Provide a clear description of the problem and solution, including a link to any relevant issues.
+9.  **Open a Pull Request:** Go to the original `token-baker` repository on GitHub and open a new Pull Request. **Ensure the base branch is set to `develop`**, not `main`. Provide a clear description of the problem and solution, including a link to any relevant issues.
 
 Thank you for your contribution!

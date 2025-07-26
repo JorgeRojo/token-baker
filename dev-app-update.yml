@@ -1,3 +1,3 @@
 provider: generic
-url: https://example.com/auto-updates
-updaterCacheDirName: design-tokens-builder-updater
+url: https://github.com/JorgeRojo/token-baker/auto-updates
+updaterCacheDirName: token-baker-updater

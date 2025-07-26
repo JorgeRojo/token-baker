@@ -1,5 +1,5 @@
-appId: design-tokens-builder
-productName: design-tokens-builder
+appId: token-baker
+productName: Token Baker
 directories:
   buildResources: build
 files:
@@ -13,7 +13,7 @@ asarUnpack:
   - resources/**
 icon: build/icons/256x256.png
 win:
-  executableName: design-tokens-builder
+  executableName: token-baker
   icon: build/icons/icon.ico
 nsis:
   artifactName: ${name}-${version}-setup.${ext}

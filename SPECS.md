@@ -1,4 +1,4 @@
-# Project Specification: design-tokens-builder
+# Project Specification: token-baker
 
 **Version:** 1.0
 **Date:** July 26, 2025
@@ -6,7 +6,7 @@
 
 ## 1. Project Summary
 
-**design-tokens-builder** is an AI-powered, cross-platform desktop application (built with Electron). It serves as an intelligent **token file editor and manager**, designed to accelerate and standardize the creation of design tokens.
+**token-baker** is an AI-powered, cross-platform desktop application (built with Electron). It serves as an intelligent **token file editor and manager**, designed to accelerate and standardize the creation of design tokens.
 
 The application allows users to load existing `tokens.json` files, visualize their structure, and use an AI assistant to scaffold new token names based on natural language descriptions of UI components. Users can then conversationally refine these suggestions before merging them into their token set and saving the file.
 

@@ -1,5 +1,5 @@
 {
-  "name": "design-tokens-builder",
+  "name": "token-baker",
   "version": "1.0.0",
   "description": "Accelerate your design system workflow. An AI assistant that instantly scaffolds all the design token names you need for your components from a simple prompt",
   "main": "./out/main/index.js",
@@ -7,7 +7,7 @@
     "name": "Jorge Rojo",
     "email": "jorge.rojodiseno@gmail.com"
   },
-  "homepage": "https://github.com/JorgeRojo/design-tokens-builder",
+  "homepage": "https://github.com/JorgeRojo/token-baker",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",
