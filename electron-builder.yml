@@ -2,5 +2,13 @@ appId: com.example.app
 productName: Design Tokens Builder
 files:
   - "**/*"
+icon: src/assets/icons/256x256.png
 mac:
   target: dmg
+  icon: src/assets/icons/icon.icns
+win:
+  target: nsis
+  icon: src/assets/icons/icon.ico
+linux:
+  target: ["deb", "snap"]
+  icon: src/assets/icons/png/512x512.png
