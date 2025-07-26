@@ -1,0 +1,6 @@
+appId: com.example.app
+productName: Design Tokens Builder
+files:
+  - "**/*"
+mac:
+  target: dmg
