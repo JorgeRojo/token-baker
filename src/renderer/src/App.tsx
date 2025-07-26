@@ -1,4 +1,4 @@
-import { Button, ColorSchemeProvider, ColorSchemeSwitcher } from 'fratch-ui'
+import { ColorSchemeProvider, ColorSchemeSwitcher } from 'fratch-ui'
 import Versions from './components/Versions'
 
 const App: React.FC = () => {
@@ -6,9 +6,11 @@ const App: React.FC = () => {
     <ColorSchemeProvider>
       <div>
         <ColorSchemeSwitcher />
-        <h1>Design Tokens Builder</h1>
-        <p>The application has started successfully with React.</p>
-        <Button type="tertiary">Fratch-UI Button</Button>
+        <h1>Token Baker</h1>
+        <p>
+          ✨ Accelerate your design system workflow. An AI-powered editor that helps you build,
+          manage, and refine your design tokens from a simple prompt.
+        </p>
         <Versions />
       </div>
     </ColorSchemeProvider>
