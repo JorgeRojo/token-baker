@@ -31,7 +31,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18 or later)
+- [Node.js](v18 or later)
 - npm or yarn
 
 ### Installation
@@ -47,6 +47,25 @@ Follow these instructions to get a copy of the project up and running on your lo
     ```sh
     npm install
     ```
+
+## Project Structure
+
+```schema
+.
+├── assets/
+├── src/
+│   ├── index.css
+│   ├── main.ts
+│   ├── preload.ts
+│   ├── renderer.ts
+│   └── renderer/
+│       └── App.tsx
+├── CONTRIBUTING.md
+├── index.html
+├── LICENSE
+├── README.md
+└── SPECS.md
+```
 
 ## Available Scripts
 
