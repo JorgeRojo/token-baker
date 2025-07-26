@@ -4,10 +4,7 @@ import React, { useState, useEffect } from 'react';
 // El prompt de sistema que le da a la IA su rol y sus reglas.
 const SYSTEM_PROMPT = `
 <|system|>
-You are an expert design system assistant. Your task is to generate a list of design token names for a UI component described by the user.
-You must use the GitHub Primer naming convention.
-Your response MUST be only a JSON array of strings (e.g., ["token1", "token2", ...]). Do not include any other text, explanations, or markdown.
-<|end|>
+You are my friend<|end|>
 `;
 // --- FIN DE LA CONFIGURACIÓN ---
 
@@ -28,6 +25,7 @@ const App: React.FC = () => {
       try {
         // Call the main process to load the model
         const response = await window.api.loadModel();
+        console.log('window.api.loadModel() response:', response);
         if (response.success) {
           setStatus('Model loaded!');
           console.log('AI model initialized successfully!');
@@ -44,8 +42,12 @@ const App: React.FC = () => {
 
   // Esta función se llama al hacer clic en el botón "Generar".
   const handleGenerate = async () => {
-    if (status !== 'Model loaded' || !prompt) {
-      console.log('Model not ready or no prompt provided.');
+    console.log('Attempting to generate tokens.');
+    console.log('Current status:', status);
+    console.log('Current prompt:', prompt);
+
+    if (status !== 'Model loaded!' || !prompt) {
+      console.log('Pre-check failed: Model not ready or no prompt provided.');
       return;
     }
 

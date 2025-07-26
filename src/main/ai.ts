@@ -4,7 +4,11 @@ let generator: TextGenerationPipeline | undefined
 
 export async function loadModel(): Promise<void> {
   if (!generator) {
-    generator = await pipeline('text-generation', 'Xenova/phi-3-mini-4k-instruct');
+    generator = await pipeline('text-generation', 'Xenova/gpt2', {
+      progress_callback: (data: any) => {
+        console.log('Model download progress:', data);
+      }
+    });
   }
 }
 

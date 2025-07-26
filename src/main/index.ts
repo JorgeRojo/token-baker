@@ -32,6 +32,7 @@ function createWindow(): void {
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL']);
+    mainWindow.webContents.openDevTools({ mode: 'bottom' });
   } else {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'));
   }
@@ -53,11 +54,13 @@ app.whenReady().then(() => {
 
   // IPC handlers
   ipcMain.handle('load-model', async () => {
+    console.log('IPC: load-model received.');
     try {
       await loadModel();
+      console.log('IPC: Model loaded successfully.');
       return { success: true };
     } catch (error: unknown) {
-      console.error('Failed to load model in main process:', error);
+      console.error('IPC: Failed to load model:', error);
       return { success: false, error: (error as Error).message };
     }
   });
