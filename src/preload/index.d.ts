@@ -4,7 +4,9 @@ declare global {
   interface Window {
     electron: ElectronAPI;
     api: {
-      generateTokens: (prompt: string) => Promise<{ success: boolean; tokens?: string[]; error?: string }>;
+      generateTokens: (
+        prompt: string
+      ) => Promise<{ success: boolean; tokens?: string[]; error?: string }>;
       loadModel: () => Promise<{ success: boolean; error?: string }>;
     };
   }

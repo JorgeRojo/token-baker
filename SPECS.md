@@ -6,22 +6,22 @@
 
 ## 1. Project Summary
 
-**token-baker** is an AI-powered, cross-platform desktop application (built with Electron). It serves as an intelligent **token file editor and manager**, designed to accelerate and standardize the creation of design tokens.
+**token-baker** is an AI-powered, cross-platform desktop application (built with Electron). It serves as an intelligent **token file editor and manager**, designed to accelerate and standardize the creation of design tokens by leveraging a powerful, remote AI model via the Hugging Face Inference API.
 
-The application allows users to load existing `tokens.json` files, visualize their structure, and use an AI assistant to scaffold new token names based on natural language descriptions of UI components. Users can then conversationally refine these suggestions before merging them into their token set and saving the file.
+The application allows users to load existing `tokens.json` files, visualize their structure, and use an AI assistant to scaffold new token names based on natural language descriptions. Users can then conversationally refine these suggestions before merging them into their token set and saving the file.
 
 ## 2. Context and Motivation
 
-In modern design systems, token management can be a bottleneck. This application aims to solve key pain points by:
+This application aims to solve key pain points in design system workflows by:
 
 - **Automating Scaffolding:** Automatically generating a checklist of token names needed for a new component.
 - **Enforcing Consistency:** Ensuring all generated names adhere to a robust, predefined naming convention.
 - **Streamlining Editing:** Providing a user-friendly interface to load, modify, and save token files, eliminating manual JSON editing.
-- **Working Offline:** Offering a privacy-focused, offline-first tool by running the AI model locally on the user's machine.
+- **Leveraging Powerful AI:** Using a state-of-the-art remote model for higher quality suggestions without consuming local machine resources.
 
 ## 3. Reference System
 
-The application's AI logic for generating token names will be trained and instructed to follow the naming conventions and structure of the **GitHub Primer Design System**. This serves as the "north star" for the output's quality and structure.
+The application's AI logic will be instructed to follow the naming conventions of the **GitHub Primer Design System**.
 
 > **Reference Guide:** [https://primer.style/product/primitives/token-names/](https://primer.style/product/primitives/token-names/)
 
@@ -32,64 +32,47 @@ The application's AI logic for generating token names will be trained and instru
 - **UI Component Library:** [fratch-ui](https://github.com/JR-NodePI/fratch-ui)
 - **Bundler:** [Vite](https://vitejs.dev/)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **AI Engine:** [Transformers.js](https://huggingface.co/docs/transformers.js) running a local model (e.g., Phi-3-mini).
+- **AI Engine:** **Hugging Face Inference API**
+- **Recommended Model:** `gpt2` (as a placeholder for a free, widely available model for testing API connectivity).
 - **Testing:** [Vitest](https://vitest.dev/)
-- **Development Tooling:**
-  - **Linter:** [ESLint](https://eslint.org/)
-  - **Formatter:** [Prettier](https://prettier.io/)
-  - **Git Hooks:** [Husky](https://typicode.github.io/husky/)
+- **Development Tooling:** ESLint, Prettier, Husky
 
 ## 5. Functional Specifications
 
-### F.1: Token File Management (Import/Export)
+### F.1: User Authentication
+
+- The application UI will include an input field for the user to enter their Hugging Face API Token. (Note: Currently, the token is set directly in `src/main/index.ts` for simplicity).
+- This token is required to make requests to the inference API. It will be stored in memory for the duration of the session.
+
+### F.2: Token File Management (Import/Export)
 
 - **File Loading (Import):** A "Load JSON" button will open a native file dialog to select a `.json` file. The app will parse and display its contents in a "Token Tree View".
 - **File Saving (Export):** "Save" and "Save As..." buttons will allow the user to write the current token state from memory to a `tokens.json` file.
 
-### F.2: The AI Assistant Workflow
+### F.3: The AI Assistant Workflow
 
 #### Step 1: Initial Prompt
 
-- The user writes a natural language prompt describing a UI component (e.g., "A primary call-to-action button").
-- The user can optionally select a node in the Token Tree View to provide context.
+- The user writes a natural language prompt describing a UI component.
 - The user clicks the "Generate Suggestions" button.
 
 #### Step 2: Suggestion Review & Refinement Loop
 
-- **Display Suggestions:** The application sends the request to the local LLM and displays the returned list of token name suggestions in a dedicated "staging area".
-- **Refinement Options:** The user can act on this staged list by:
-  1.  **Manual Editing:** Directly deleting, adding, or renaming items in the list.
-  2.  **Conversational Refinement:** Using a new input field to provide follow-up instructions (e.g., "Add tokens for a disabled state," "Change 'primary' to 'destructive'").
-- **Iteration:** If a refinement prompt is submitted, the application sends the original context plus the new instruction back to the LLM to get a revised list. This loop can continue until the user is satisfied.
+- **Display Suggestions:** The application sends the request to the Hugging Face API and displays the returned list of token name suggestions in a "staging area".
+- **Conversational Refinement:** The user can provide follow-up instructions (e.g., "Add tokens for a disabled state") to iterate on the suggestions until the list of tokens is perfect.
 
 #### Step 3: Final Confirmation
 
-- **Accept Changes:** Once the list is perfect, the user clicks an "Accept & Add" button.
-- **Merge State:** The confirmed token names are then merged into the main token tree in the application's memory, ready to be saved.
+- **Accept Changes:** The user clicks an "Accept & Add" button.
+- **Merge State:** The confirmed token names are merged into the main token tree, ready to be saved.
 
-## 6. Core Logic: The LLM System Prompt
+## 6. Non-Functional Requirements
 
-The "brain" of the application is a carefully crafted system prompt that instructs the local LLM.
+- **Internet Connection:** The application **requires an active internet connection** to communicate with the Hugging Face API.
+- **Performance:** The UI must remain responsive. A clear loading indicator must be visible during API calls.
+- **Privacy:** Users should be informed that their prompts are sent to the Hugging Face API for processing. The API key is handled client-side and only sent in requests.
 
-> **Your Role:** You are an expert design system assistant. Your specialty is helping developers apply design tokens consistently.
->
-> **Your Task:** The user will describe a UI component. Your goal is to generate a list of the design token names required to build that component.
->
-> .
-> **Strict Rules:**
->
-> 1.  **Naming System:** You must exclusively use the GitHub Primer naming convention.
-> 2.  **Output Format:** Your response MUST be only a JSON array of strings (e.g., `["token1", "token2", ...]`). Do not include any other text.
-> 3.  **Inference:** Infer all necessary tokens. If a user mentions a "primary button", you must include tokens for its background, foreground, border, and interaction states.
-> 4.  **Completeness:** Think holistically about the component: colors, fonts, spacing, radii, shadows, etc.
-
-## 7. Non-Functional Requirements
-
-- **Performance:** The application should be responsive. LLM inference may take a few seconds, during which a clear loading indicator must be visible.
-- **Security & Privacy:** As the model runs locally, no user data or prompts are sent to any external cloud service.
-- **Platform:** The application must be buildable for major desktop platforms (macOS, Windows).
-
-## 8. Licensing and Contribution
+## 7. Licensing and Contribution
 
 - **License:** This project is licensed under the **Mozilla Public License 2.0**.
-- **Contribution Model:** The project follows the **GitFlow** branching model. All contributions should be made via Pull Requests targeted to the `develop` branch. See `CONTRIBUTING.md` for details.
+- **Contribution Model:** The project follows the **GitFlow** branching model. See `CONTRIBUTING.md` for details.
