@@ -27,10 +27,9 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
-    "axios": "^1.11.0",
+    "electron-json-storage": "^4.6.0",
     "electron-updater": "^6.3.9",
-    "fratch-ui": "^1.8.4",
-    "node-fetch": "^2.7.0"
+    "fratch-ui": "^1.8.4"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",
@@ -52,7 +51,6 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "typescript": "^5.8.3",
-    "vite": "^7.0.5",
-    "vite-plugin-static-copy": "^3.1.1"
+    "vite": "^7.0.5"
   }
 }

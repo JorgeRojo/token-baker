@@ -26,18 +26,10 @@ Follow these steps to get your key:
 
    > **⚠️ Important!** Treat this key like a password. Do not share it publicly or commit it to code repositories.
 
-### Step 4: Configure the Key in the Project
+### Step 4: Configure the Key in the Application
 
-1. In the **root of this project**, look for a file named `.env.example`. This file serves as a template for your environment variables.
+1.  Once you have your API key, you will be prompted to enter it directly within the application's settings or a dedicated input field. Paste your copied key into the designated area.
 
-2. **Create a copy** of the `.env.example` file and **rename the copy** to `.env`. This new `.env` file is where your secret keys will be stored and is ignored by Git to keep them safe.
-
-3. Open the new `.env` file and add the following line, replacing `YOUR_KEY_HERE` with the key you just copied:
-
-```.env
- GEMINI_API_KEY="YOUR_KEY_HERE"
-```
-
-- Save the file, and you're all set! The application will now be able to use your key to connect to the Google Gemini API.
+-   Save the key within the application, and you're all set! The application will now be able to use your key to connect to the Google Gemini API.
 
 If you ever lose your key or believe it has been compromised, you can return to Google AI Studio, delete the old key, and create a new one by following the same steps.

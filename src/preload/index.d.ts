@@ -8,6 +8,8 @@ declare global {
         prompt: string
       ) => Promise<{ success: boolean; tokens?: string[]; error?: string }>;
       loadModel: () => Promise<{ success: boolean; error?: string }>;
+      saveApiKey: (apiKey: string) => Promise<{ success: boolean; error?: string }>;
+      getApiKey: () => Promise<{ success: boolean; apiKey?: string; error?: string }>;
     };
   }
 }
