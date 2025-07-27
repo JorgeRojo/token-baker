@@ -1,7 +1,7 @@
 # Token Baker 🎨🤖
 
-[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](LICENSE.md)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](docs/CONTRIBUTING.md)
 
 > ✨ Accelerate your design system workflow. An AI-powered editor that helps you build, manage, and refine your design tokens from a simple prompt.
 
@@ -36,7 +36,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 ### Installation
 
 1. **Get your API Key:**
-   - Follow the simple steps in our guide: **[How to Get a Google Gemini API Key](GET_GEMINI_API_KEY.md)**.
+   - Follow the simple steps in our guide: **[How to Get a Google Gemini API Key](docs/GET_GEMINI_API_KEY.md)**.
 
 2. **Clone the repository:**
 
@@ -61,8 +61,8 @@ When the app launches, paste your Google API Key into the designated input field
 
 ## How to Contribute
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for details.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Please check out the [CONTRIBUTING.md](docs/CONTRIBUTING.md) file for details.
 
 ## License
 
-This project is licensed under the **Mozilla Public License 2.0**. See the [LICENSE.md](LICENSE.md) file for full details.
+This project is licensed under the **Mozilla Public License 2.0**. See the [LICENSE](LICENSE) file for full details.

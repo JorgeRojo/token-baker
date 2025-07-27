@@ -1,4 +1,46 @@
-import { ERROR_MESSAGES, GEMINI_URL_BASE, SYSTEM_PROMPT, LOG_MESSAGES } from './constants';
+import { safeStorage } from 'electron';
+import storage from 'electron-json-storage';
+import {
+  API_KEY_STORE_KEY,
+  ERROR_MESSAGES,
+  GEMINI_URL_BASE,
+  LOG_MESSAGES,
+  SYSTEM_PROMPT
+} from './constants';
+
+export const getDecryptedApiKey = async (): Promise<string | null> => {
+  return new Promise((resolve, reject) => {
+    storage.get(API_KEY_STORE_KEY, (error, data) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      if (safeStorage.isEncryptionAvailable()) {
+        if (data) {
+          resolve(safeStorage.decryptString(Buffer.from(data, 'hex')));
+        } else {
+          resolve(null);
+        }
+      } else {
+        resolve(null);
+      }
+    });
+  });
+};
+
+export async function saveApiKey(apiKey: string): Promise<void> {
+  if (safeStorage.isEncryptionAvailable()) {
+    const encryptedKey = safeStorage.encryptString(apiKey).toString('hex');
+    await new Promise<void>((resolve, reject) => {
+      storage.set(API_KEY_STORE_KEY, encryptedKey, (error) => {
+        if (error) reject(error);
+        else resolve();
+      });
+    });
+  } else {
+    throw new Error('Encryption is not available on this system.');
+  }
+}
 
 export async function checkApiConnection(apiKey: string): Promise<void> {
   if (!apiKey) {

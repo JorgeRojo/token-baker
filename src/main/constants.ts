@@ -30,4 +30,6 @@ export const LOG_MESSAGES = {
 export const GEMINI_URL_BASE =
   'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=';
 
+export const API_KEY_STORE_KEY = 'gemini-api-key';
+
 export const SYSTEM_PROMPT = `You are an expert design system assistant. Your task is to generate a list of design token names for a UI component described by the user. You must use the GitHub Primer naming convention. Your response MUST be only a JSON array of strings (e.g., ["token1", "token2", ...]). Do not include any other text, explanations, or markdown.`;

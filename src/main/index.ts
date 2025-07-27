@@ -1,9 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain, safeStorage } from 'electron';
-import storage from 'electron-json-storage';
+import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
-import { checkApiConnection, generateTokens } from './ai';
+import { checkApiConnection, generateTokens, getDecryptedApiKey, saveApiKey } from './ai';
 import { ERROR_MESSAGES, LOG_MESSAGES } from './constants';
 
 function createWindow(): void {
@@ -44,43 +43,11 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window);
   });
 
-  const API_KEY_STORE_KEY = 'gemini-api-key';
-
-  const getDecryptedApiKey = async (): Promise<string | null> => {
-    return new Promise((resolve, reject) => {
-      storage.get(API_KEY_STORE_KEY, (error, data) => {
-        if (error) {
-          reject(error);
-          return;
-        }
-        if (safeStorage.isEncryptionAvailable()) {
-          if (data) {
-            resolve(safeStorage.decryptString(Buffer.from(data, 'hex')));
-          } else {
-            resolve(null);
-          }
-        } else {
-          resolve(null);
-        }
-      });
-    });
-  };
-
   ipcMain.handle('save-api-key', async (_event, apiKey: string) => {
     try {
-      if (safeStorage.isEncryptionAvailable()) {
-        const encryptedKey = safeStorage.encryptString(apiKey).toString('hex');
-        await new Promise<void>((resolve, reject) => {
-          storage.set(API_KEY_STORE_KEY, encryptedKey, (error) => {
-            if (error) reject(error);
-            else resolve();
-          });
-        });
-        console.log('API Key saved (encrypted) to store!');
-        return { success: true };
-      } else {
-        throw new Error('Encryption is not available on this system.');
-      }
+      await saveApiKey(apiKey);
+      console.log('API Key saved to store!');
+      return { success: true };
     } catch (error: unknown) {
       console.error('Failed to save API Key:', error);
       return { success: false, error: (error as Error).message };
