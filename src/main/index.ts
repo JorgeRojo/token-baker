@@ -1,5 +1,5 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron';
-import { join } from 'path';
+import path, { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../resources/icon.png?asset';
 import { checkApiConnection, generateTokens, getDecryptedApiKey, saveApiKey } from './ai';
@@ -38,6 +38,8 @@ function createWindow(): void {
 
 app.whenReady().then(() => {
   electronApp.setAppUserModelId('com.electron');
+
+  console.log('>>>----->> userData storage', path.join(app.getPath('userData'), 'storage'));
 
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window);

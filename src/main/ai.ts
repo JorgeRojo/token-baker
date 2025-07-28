@@ -16,7 +16,7 @@ export const getDecryptedApiKey = async (): Promise<string | null> => {
         return;
       }
       if (safeStorage.isEncryptionAvailable()) {
-        if (data) {
+        if (data && typeof data === 'string') {
           resolve(safeStorage.decryptString(Buffer.from(data, 'hex')));
         } else {
           resolve(null);
