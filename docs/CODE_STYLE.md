@@ -55,6 +55,7 @@ Key ESLint configurations and plugins:
 
 ## 7. Comments
 
+*   **Avoid Excessive Comments:** Prioritize self-descriptive function, variable, and component names over comments. Comments should be used sparingly, only to explain *why* a piece of code exists or *what* a complex algorithm does, rather than *how* it works (which should be clear from the code itself).
 *   **Purpose:** Use comments to explain *why* a piece of code exists or *what* a complex algorithm does, rather than *how* it works (which should be clear from the code itself).
 *   **Language:** All comments should be in English.
 
