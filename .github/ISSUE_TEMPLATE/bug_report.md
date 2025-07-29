@@ -3,44 +3,71 @@ name: Bug Report
 about: Report a bug to help us improve
 labels: 'bug'
 assignees: ''
----
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Important Notes:**
 
-**Important Notes:**
-
-*   Please ensure your report adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
-*   When providing code snippets, please follow our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
-
-## Bug Description
-
-A clear and concise description of what the bug is.
-
-## Steps to Reproduce
-
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
-
-## Expected Behavior
-
-A clear and concise description of what you expected to happen.
-
-## Actual Behavior
-
-A clear and concise description of what actually happened.
-
-## Screenshots/Recordings
-
-If applicable, add screenshots or recordings to help explain your problem.
-
-## Environment
-
-- **Operating System:** [e.g., Windows 10, macOS Ventura, Linux Ubuntu]
-- **Electron Version:** [e.g., 27.0.0]
-- **Node.js Version:** [e.g., 18.18.0]
-- **App Version:** [e.g., 1.0.0]
-
-## Additional Context
-
-Add any other context about the problem here (e.g., error messages, logs).
+        *   Please ensure your report adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
+        *   When providing code snippets, please follow our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: "Bug Description"
+      description: "A clear and concise description of what the bug is."
+      placeholder: "Describe the bug here..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Steps to reproduce the behavior:"
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "Expected Behavior"
+      description: "A clear and concise description of what you expected to happen."
+      placeholder: "Describe the expected behavior here..."
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: "Actual Behavior"
+      description: "A clear and concise description of what actually happened."
+      placeholder: "Describe the actual behavior here..."
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots-recordings
+    attributes:
+      label: "Screenshots/Recordings"
+      description: "If applicable, add screenshots or recordings to help explain your problem."
+      placeholder: "Drag and drop images or recordings here."
+  - type: textarea
+    id: environment
+    attributes:
+      label: "Environment"
+      description: "Provide details about your environment."
+      placeholder: |
+        - Operating System: [e.g., Windows 10, macOS Ventura, Linux Ubuntu]
+        - Electron Version: [e.g., 27.0.0]
+        - Node.js Version: [e.g., 18.18.0]
+        - App Version: [e.g., 1.0.0]
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Additional Context"
+      description: "Add any other context about the problem here (e.g., error messages, logs)."
+      placeholder: "Any other relevant information..."
