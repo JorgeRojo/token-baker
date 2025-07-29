@@ -9,6 +9,7 @@ body:
         **Important Notes:**
 
         *   Please ensure your request adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
+        *   For general contribution guidelines, please refer to our [Contributing Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CONTRIBUTING.md).
         *   When suggesting code changes, please consider our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
   - type: textarea
     id: problem-related
