@@ -5,6 +5,11 @@ labels: 'maintenance'
 assignees: ''
 ---
 
+**Important Notes:**
+
+*   Please ensure your task adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
+*   When making code changes, please follow our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
+
 ## Task Description
 
 A clear and concise description of the maintenance task.

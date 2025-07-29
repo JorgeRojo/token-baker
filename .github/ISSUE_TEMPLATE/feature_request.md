@@ -5,6 +5,11 @@ labels: 'enhancement'
 assignees: ''
 ---
 
+**Important Notes:**
+
+*   Please ensure your request adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
+*   When suggesting code changes, please consider our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
+
 ## Is your feature request related to a problem?
 
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]

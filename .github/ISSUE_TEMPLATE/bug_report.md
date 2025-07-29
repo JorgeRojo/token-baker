@@ -5,6 +5,11 @@ labels: 'bug'
 assignees: ''
 ---
 
+**Important Notes:**
+
+*   Please ensure your report adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
+*   When providing code snippets, please follow our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
+
 ## Bug Description
 
 A clear and concise description of what the bug is.
