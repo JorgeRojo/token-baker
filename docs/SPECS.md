@@ -75,4 +75,4 @@ The application's AI logic will be instructed to follow the naming conventions o
 ## 7. Licensing and Contribution
 
 - **License:** This project is licensed under the **Mozilla Public License 2.0**.
-- **Contribution Model:** The project follows the **GitFlow** branching model. See `CONTRIBUTING.md` for details.
+- **Contribution Model:** The project follows the **GitFlow** branching model. See [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.

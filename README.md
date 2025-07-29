@@ -66,3 +66,8 @@ Contributions are what make the open-source community such an amazing place to l
 ## License
 
 This project is licensed under the **Mozilla Public License 2.0**. See the [LICENSE](LICENSE) file for full details.
+
+## Additional Documentation
+
+*   [Code of Conduct](docs/CODE_OF_CONDUCT.md)
+*   [Code Style Guidelines](docs/CODE_STYLE.md)
