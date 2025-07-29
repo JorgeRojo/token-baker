@@ -1,0 +1,26 @@
+# Establece el comportamiento por defecto para normalizar los finales de línea a LF en el repositorio.
+* text=auto eol=lf
+
+# Declara explícitamente los ficheros de texto que siempre deben ser normalizados.
+# Git los convertirá a los finales de línea nativos del SO (CRLF en Windows) en tu directorio de trabajo.
+.editorconfig text
+.gitignore text
+.npmrc text
+.prettierignore text
+.prettierrc.yaml text
+*.md text
+*.ts text
+*.tsx text
+*.mjs text
+*.js text
+*.json text
+*.html text
+*.css text
+*.yaml text
+*.yml text
+*.plist text
+
+# Declara los ficheros que son binarios y nunca deben ser modificados.
+*.png binary
+*.ico binary
+*.icns binary
