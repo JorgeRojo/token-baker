@@ -4,11 +4,12 @@ about: Report a bug to help us improve
 labels: 'bug'
 assignees: ''
 body:
-  - type: markdown
-    attributes:
-      value: |
-        **Important Notes:**
-        Please ensure your report adheres to our Code of Conduct and Code Style Guidelines.
+  ---
+name: Bug Report
+about: Report a bug to help us improve
+labels: 'bug'
+assignees: ''
+body:
   - type: textarea
     id: bug-description
     attributes:
