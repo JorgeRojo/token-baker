@@ -36,7 +36,19 @@ To ensure a smooth process, please follow these steps for submitting code change
     git remote add upstream https://github.com/JorgeRojo/token-baker.git
     ```
 
-4.  **Create Your Branch from `develop`:** Before starting any work, make sure your local `develop` branch is up to date with the main project, and then create your new branch from it. Use a descriptive prefix like `feature/`, `bugfix/`, or `docs/`.
+4.  **Create Your Branch from `develop` (with an associated GitHub Issue):** Before starting any work, ensure your local `develop` branch is up to date with the main project. Then, create your new branch from it.
+
+    **Important:** Every `feature/`, `bugfix/`, or `docs/` branch **must have an associated GitHub Issue**. This helps us track progress and context. Please include the issue number in your branch name for clarity.
+
+    *   **How to associate an Issue:**
+        1.  Go to the project's [Issues page](https://github.com/JorgeRojo/token-baker/issues) on GitHub.
+        2.  Create a new issue (using one of our [issue templates](.github/ISSUE_TEMPLATE/)).
+        3.  Note the issue number (e.g., `#123`).
+
+    *   **Branch Naming Convention:** Use a descriptive prefix like `feature/`, `bugfix/`, or `docs/`, followed by the issue number and a short, descriptive name.
+        *   Example for a feature: `feature/123-add-new-component`
+        *   Example for a bugfix: `bugfix/456-fix-login-error`
+        *   Example for documentation: `docs/789-update-readme`
 
     ```sh
     # Fetch the latest changes from the upstream repository
@@ -48,8 +60,8 @@ To ensure a smooth process, please follow these steps for submitting code change
     # Sync it with the upstream develop branch
     git merge upstream/develop
 
-    # Create your new branch for the feature or fix
-    git checkout -b feature/your-amazing-feature
+    # Create your new branch for the feature or fix (e.g., git checkout -b feature/123-add-new-component)
+    git checkout -b feature/your-issue-number-descriptive-name
     ```
 
 5.  **Make Your Changes:** Write the code for your feature or bug fix.
