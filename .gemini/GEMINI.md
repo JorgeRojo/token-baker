@@ -1,5 +1,4 @@
 ## Gemini Added Memories
-- El usuario prefiere que todas las respuestas comiencen con 'model flash'.
 
 ## Code Style Guidelines
 
