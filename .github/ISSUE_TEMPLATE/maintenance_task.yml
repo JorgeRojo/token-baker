@@ -1,31 +1,50 @@
----
 name: Maintenance Task
 description: "For internal tasks, refactoring, dependency updates, etc."
 labels: 'maintenance'
 assignees: []
----
+body:
+  - type: markdown
+    attributes:
+      value: |-
+        **Important Notes:**
 
-**Important Notes:**
-
-*   Please ensure your task adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
-*   When making code changes, please follow our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
-
-## Task Description
-
-A clear and concise description of the maintenance task.
-
-## Motivation
-
-Why is this task necessary? What problem does it solve or prevent?
-
-## Scope
-
-What areas of the codebase will be affected? (e.g., dependencies, refactoring, documentation)
-
-## Acceptance Criteria
-
-How will we know when the task is complete and successful?
-
-## Additional Context
-
-Add any other relevant context here.
+        *   Please ensure your task adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
+        *   When making code changes, please follow our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
+  - type: textarea
+    id: task-description
+    attributes:
+      label: "Task Description"
+      description: "A clear and concise description of the maintenance task."
+      placeholder: "Describe the task here..."
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: "Motivation"
+      description: "Why is this task necessary? What problem does it solve or prevent?"
+      placeholder: "Describe the motivation here..."
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: "Scope"
+      description: "What areas of the codebase will be affected? (e.g., dependencies, refactoring, documentation)"
+      placeholder: "Describe the scope here..."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "Acceptance Criteria"
+      description: "How will we know when the task is complete and successful?"
+      placeholder: "Describe the acceptance criteria here..."
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "Additional Context"
+      description: "Add any other relevant context here."
+      placeholder: "Any other relevant information..."
