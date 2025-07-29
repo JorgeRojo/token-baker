@@ -1,5 +1,6 @@
 import { safeStorage } from 'electron';
 import storage from 'electron-json-storage';
+import { promisify } from 'util';
 import {
   API_KEY_STORE_KEY,
   ERROR_MESSAGES,
@@ -8,38 +9,41 @@ import {
   SYSTEM_PROMPT
 } from './constants';
 
+// Promisify storage functions for async/await usage
+const storageGet = promisify(storage.get);
+const storageSet = promisify(storage.set);
+
 export const getDecryptedApiKey = async (): Promise<string | null> => {
-  return new Promise((resolve, reject) => {
-    storage.get(API_KEY_STORE_KEY, (error, data) => {
-      if (error) {
-        reject(error);
-        return;
-      }
-      if (safeStorage.isEncryptionAvailable()) {
-        if (data && typeof data === 'string') {
-          resolve(safeStorage.decryptString(Buffer.from(data, 'hex')));
-        } else {
-          resolve(null);
-        }
-      } else {
-        resolve(null);
-      }
-    });
-  });
+  try {
+    if (!safeStorage.isEncryptionAvailable()) {
+      // If encryption is not available, we cannot decrypt a key.
+      return null;
+    }
+
+    // Retrieve data from storage
+    const data = await storageGet(API_KEY_STORE_KEY);
+
+    // Check if data is a valid string to decrypt
+    if (data && typeof data === 'string') {
+      return safeStorage.decryptString(Buffer.from(data, 'hex'));
+    }
+
+    // Return null if no key is found or data is invalid
+    return null;
+  } catch (error) {
+    // It's safer to return null and log the error than to throw
+    console.error('Failed to retrieve API key:', error);
+    return null;
+  }
 };
 
 export async function saveApiKey(apiKey: string): Promise<void> {
-  if (safeStorage.isEncryptionAvailable()) {
-    const encryptedKey = safeStorage.encryptString(apiKey).toString('hex');
-    await new Promise<void>((resolve, reject) => {
-      storage.set(API_KEY_STORE_KEY, encryptedKey, (error) => {
-        if (error) reject(error);
-        else resolve();
-      });
-    });
-  } else {
+  if (!safeStorage.isEncryptionAvailable()) {
     throw new Error('Encryption is not available on this system.');
   }
+  const encryptedKey = safeStorage.encryptString(apiKey).toString('hex');
+  // Wait for the promisified set operation to complete
+  await storageSet(API_KEY_STORE_KEY, encryptedKey);
 }
 
 export async function checkApiConnection(apiKey: string): Promise<void> {
