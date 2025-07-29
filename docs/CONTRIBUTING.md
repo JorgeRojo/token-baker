@@ -19,21 +19,21 @@ This project uses the [GitFlow](https://nvie.com/posts/a-successful-git-branchin
 
 ## Pull Request Process
 
-To ensure a smooth process, please follow these steps for submitting code changes.
+To ensure a smooth process, please follow these steps for submitting code changes. While most development work involves local Git commands, certain actions like **forking the repository** and **opening Pull Requests** are best managed directly through the GitHub web interface. For very minor changes (e.g., typos), you might even use GitHub's web editor directly.
 
-1.  **Fork the Repository:** Create your own copy of the project on your GitHub account.
+1.  **Fork the Repository (via GitHub UI):** Create your own copy of the project on your GitHub account by clicking the "Fork" button on the main repository page.
 
 2.  **Clone Your Fork:** Clone your forked repository to your local machine.
 
     ```sh
-    git clone [https://github.com/YOUR_USERNAME/token-baker.git](https://github.com/YOUR_USERNAME/token-baker.git)
+    git clone https://github.com/YOUR_USERNAME/token-baker.git
     cd token-baker
     ```
 
 3.  **Configure Upstream Remote:** Add the original repository as an "upstream" remote. This makes it easier to sync changes.
 
     ```sh
-    git remote add upstream [https://github.com/JorgeRojo/token-baker.git](https://github.com/JorgeRojo/token-baker.git)
+    git remote add upstream https://github.com/JorgeRojo/token-baker.git
     ```
 
 4.  **Create Your Branch from `develop`:** Before starting any work, make sure your local `develop` branch is up to date with the main project, and then create your new branch from it. Use a descriptive prefix like `feature/`, `bugfix/`, or `docs/`.
@@ -82,6 +82,6 @@ To ensure a smooth process, please follow these steps for submitting code change
     git push origin feature/your-amazing-feature
     ```
 
-9.  **Open a Pull Request:** Go to the original `token-baker` repository on GitHub and open a new Pull Request. **Ensure the base branch is set to `develop`**, not `main`. Provide a clear description of the problem and solution, including a link to any relevant issues.
+9.  **Open a Pull Request (via GitHub UI):** Go to your forked repository on GitHub and click the "Compare & pull request" button that appears after pushing your branch. **Ensure the base branch is set to `develop`**, not `main`. Provide a clear description of the problem and solution, including a link to any relevant issues.
 
 Thank you for your contribution!
