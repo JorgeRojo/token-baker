@@ -3,6 +3,13 @@ description: "Report a bug to help us improve."
 labels: 'bug'
 assignees: []
 body:
+  - type: markdown
+    attributes:
+      value: |-
+        **Important Notes:**
+
+        *   Please ensure your request adheres to our [Code of Conduct](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_OF_CONDUCT.md).
+        *   When reporting bugs, please consider our [Code Style Guidelines](https://github.com/JorgeRojo/token-baker/blob/main/docs/CODE_STYLE.md).
   - type: textarea
     id: bug-description
     attributes:
