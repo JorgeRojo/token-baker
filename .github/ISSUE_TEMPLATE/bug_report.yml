@@ -1,4 +1,5 @@
 name: Bug Report
+description: "Report a bug to help us improve."
 labels: 'bug'
 assignees: []
 body:

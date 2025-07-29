@@ -1,5 +1,6 @@
 ---
 name: Maintenance Task
+description: "For internal tasks, refactoring, dependency updates, etc."
 labels: 'maintenance'
 assignees: []
 ---
