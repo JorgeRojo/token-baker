@@ -1,7 +1,7 @@
 @import url('fratch-ui/styles/styles.css');
 
 body {
-  padding: 32px;
+  padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;

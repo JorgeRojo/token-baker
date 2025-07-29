@@ -7,6 +7,7 @@ import {
   ModalProvider
 } from 'fratch-ui';
 import SetTokenAI from './components/SetTokenAI';
+import Layout from './components/Layout/Layout';
 
 const App: React.FC = () => {
   const [prompt, setPrompt] = useState<string>(
@@ -72,44 +73,46 @@ const App: React.FC = () => {
   return (
     <ColorSchemeProvider>
       <ModalProvider>
-        <h1>AI Design Token Builder</h1>
-        <ColorSchemeSwitcher />
-        <hr />
-        <SetTokenAI />
-        <hr />
-        <p>
-          <strong>Status:</strong> {status}
-        </p>
-        <div style={{ marginTop: '16px' }}>
-          <label htmlFor="prompt-textarea" style={{ display: 'block', marginBottom: '8px' }}>
-            Describe the component you are creating:
-          </label>
-          <InputText
-            type="text"
-            id="prompt-textarea"
-            value={prompt}
-            onChange={(event): void => setPrompt(event?.target?.value ?? '')}
-          />
-        </div>
-        <div style={{ marginTop: '16px' }}>
-          <Button onClick={handleGenerate} disabled={isLoading} type="tertiary">
-            {isLoading ? 'Loading...' : '✨ Generate Tokens'}
-          </Button>
-        </div>
-        <div style={{ marginTop: '24px' }}>
-          <h2>AI Response:</h2>
-          <pre
-            style={{
-              background: '#f0f0f0',
-              padding: '16px',
-              borderRadius: '8px',
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-all'
-            }}
-          >
-            <code>{output || 'Output will appear here...'}</code>
-          </pre>
-        </div>
+        <Layout>
+          <h1>AI Design Token Builder</h1>
+          <ColorSchemeSwitcher />
+          <hr />
+          <SetTokenAI />
+          <hr />
+          <p>
+            <strong>Status:</strong> {status}
+          </p>
+          <div style={{ marginTop: '16px' }}>
+            <label htmlFor="prompt-textarea" style={{ display: 'block', marginBottom: '8px' }}>
+              Describe the component you are creating:
+            </label>
+            <InputText
+              type="text"
+              id="prompt-textarea"
+              value={prompt}
+              onChange={(event): void => setPrompt(event?.target?.value ?? '')}
+            />
+          </div>
+          <div style={{ marginTop: '16px' }}>
+            <Button onClick={handleGenerate} disabled={isLoading} type="tertiary">
+              {isLoading ? 'Loading...' : '✨ Generate Tokens'}
+            </Button>
+          </div>
+          <div style={{ marginTop: '24px' }}>
+            <h2>AI Response:</h2>
+            <pre
+              style={{
+                background: '#f0f0f0',
+                padding: '16px',
+                borderRadius: '8px',
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-all'
+              }}
+            >
+              <code>{output || 'Output will appear here...'}</code>
+            </pre>
+          </div>
+        </Layout>
       </ModalProvider>
     </ColorSchemeProvider>
   );
