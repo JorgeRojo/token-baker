@@ -1,8 +1,7 @@
 ---
 name: Maintenance Task
-about: For internal tasks, refactoring, dependency updates, etc.
 labels: 'maintenance'
-assignees: ''
+assignees: []
 ---
 
 **Important Notes:**
