@@ -1,8 +1,8 @@
-# Establece el comportamiento por defecto para normalizar los finales de línea a LF en el repositorio.
+# Set the default behavior to normalize line endings to LF in the repository.
 * text=auto eol=lf
 
-# Declara explícitamente los ficheros de texto que siempre deben ser normalizados.
-# Git los convertirá a los finales de línea nativos del SO (CRLF en Windows) en tu directorio de trabajo.
+# Explicitly declare text files that should always be normalized.
+# Git will convert them to the native EOL of the OS (CRLF on Windows) in your working directory.
 .editorconfig text
 .gitignore text
 .npmrc text
@@ -20,7 +20,7 @@
 *.yml text
 *.plist text
 
-# Declara los ficheros que son binarios y nunca deben ser modificados.
+# Declare files that are binary and should never be modified.
 *.png binary
 *.ico binary
 *.icns binary
