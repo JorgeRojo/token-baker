@@ -1,9 +1,5 @@
 # Token Compatibility
 
-- [Design Tokens Format Module](https://www.designtokens.org/tr/drafts/format/)
-- [Parametric Components](https://www.youtube.com/watch?v=1kNbLkUIlig)
-- [New Figma Variables](https://www.youtube.com/watch?v=DyD8O2rl6lY)
-
 ## Token Compatibility Table: W3C vs. Figma
 
 This table details the W3C design token types that have a direct functional equivalent in Figma. Compatibility has improved significantly, as **Styles** can now be composed from primitive **Variables**.
@@ -37,7 +33,16 @@ This means you can build a design system in Figma that aligns almost perfectly w
 
 ---
 
-## Examples
+## Research
 
+- [Comparison of Design Token Philosophies](./COMPARISON_OF_DESIGN_TOKEN_PHILOSOPHIES.md)
 - [Typography Tokens](./TYPOGRAPHY_TOKENS.md)
 - [Individual Corner Radius Tokens](./INDIVIDUAL_CORNER_RADIUS_TOKENS.md)
+
+## References
+
+- [Design Tokens Format Module](https://www.designtokens.org/tr/drafts/format/)
+- [Design Tokens Manager Figma plugin](https://www.figma.com/community/plugin/1263743870981744253/design-tokens-manager)
+- [Parametric Components - Raúl Marín video](https://www.youtube.com/watch?v=1kNbLkUIlig)
+- [New Figma Variables - Raúl Marín video](https://www.youtube.com/watch?v=DyD8O2rl6lY)
+- [Supernova tool- code automation](https://www.supernova.io/code-automation)
