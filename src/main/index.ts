@@ -52,7 +52,7 @@ app.whenReady().then(() => {
       return { success: true };
     } catch (error: unknown) {
       console.error('Failed to save API Key:', error);
-      return { success: false, error: (error as Error).message };
+      return { success: false, error: error instanceof Error ? error.message : String(error) };
     }
   });
 
@@ -66,7 +66,7 @@ app.whenReady().then(() => {
       }
     } catch (error: unknown) {
       console.error('Failed to get API Key:', error);
-      return { success: false, error: (error as Error).message };
+      return { success: false, error: error instanceof Error ? error.message : String(error) };
     }
   });
 
@@ -82,7 +82,7 @@ app.whenReady().then(() => {
       return { success: true };
     } catch (error: unknown) {
       console.error(ERROR_MESSAGES.IPC_FAILED_TO_LOAD_MODEL, error);
-      return { success: false, error: (error as Error).message };
+      return { success: false, error: error instanceof Error ? error.message : String(error) };
     }
   });
 
@@ -96,7 +96,7 @@ app.whenReady().then(() => {
       return { success: true, tokens };
     } catch (error: unknown) {
       console.error(ERROR_MESSAGES.FAILED_TO_GENERATE_TOKENS_MAIN_PROCESS, error);
-      return { success: false, error: (error as Error).message };
+      return { success: false, error: error instanceof Error ? error.message : String(error) };
     }
   });
 

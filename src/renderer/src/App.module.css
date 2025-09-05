@@ -1,0 +1,20 @@
+.marginTop16 {
+  margin-top: 16px;
+}
+
+.marginTop24 {
+  margin-top: 24px;
+}
+
+.promptLabel {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.responsePre {
+  background: #f0f0f0;
+  padding: 16px;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}

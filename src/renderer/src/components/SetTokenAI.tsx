@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react';
 import { InputText, Button, LeftLabeledField, IconPlay } from 'fratch-ui';
+import styles from './SetTokenAI.module.css';
+
+enum ApiKeyStatusMessage {
+  LOADED = 'API Key loaded successfully.',
+  NOT_FOUND = 'No API Key found. Please enter one.',
+  EMPTY = 'API Key cannot be empty.',
+  SAVED = 'API Key saved successfully!',
+}
 
 const SetTokenAI: React.FC = () => {
   const [apiKey, setApiKey] = useState<string>('');
@@ -11,14 +19,15 @@ const SetTokenAI: React.FC = () => {
         const response = await window.api.getApiKey();
         if (response.success && response.apiKey) {
           setApiKey(response.apiKey);
-          setApiKeyStatus('API Key loaded successfully.');
+          setApiKeyStatus(ApiKeyStatusMessage.LOADED);
         } else if (response.error) {
           setApiKeyStatus(`Error loading API Key: ${response.error}`);
         } else {
-          setApiKeyStatus('No API Key found. Please enter one.');
+          setApiKeyStatus(ApiKeyStatusMessage.NOT_FOUND);
         }
       } catch (error) {
-        setApiKeyStatus(`Error loading API Key: ${(error as Error).message}`);
+        const message = error instanceof Error ? error.message : String(error);
+        setApiKeyStatus(`Error loading API Key: ${message}`);
       }
     };
 
@@ -27,26 +36,27 @@ const SetTokenAI: React.FC = () => {
 
   const handleSaveApiKey = async (): Promise<void> => {
     if (!apiKey) {
-      setApiKeyStatus('API Key cannot be empty.');
+      setApiKeyStatus(ApiKeyStatusMessage.EMPTY);
       return;
     }
 
     try {
       const response = await window.api.saveApiKey(apiKey);
       if (response.success) {
-        setApiKeyStatus('API Key saved successfully!');
+        setApiKeyStatus(ApiKeyStatusMessage.SAVED);
       } else {
         setApiKeyStatus(`Error saving API Key: ${response.error}`);
       }
     } catch (error) {
-      setApiKeyStatus(`Error saving API Key: ${(error as Error).message}`);
+      const message = error instanceof Error ? error.message : String(error);
+      setApiKeyStatus(`Error saving API Key: ${message}`);
     }
   };
 
   return (
     <>
-      <div style={{ marginTop: '16px', display: 'flex', gap: '8px' }}>
-        <div style={{ flex: 1 }}>
+      <div className={styles.container}>
+        <div className={styles.inputContainer}>
           <LeftLabeledField
             label="Gemini API Key"
             field={
@@ -54,7 +64,7 @@ const SetTokenAI: React.FC = () => {
                 type="password"
                 id="gemini-api-key"
                 value={apiKey}
-                onChange={(event): void => setApiKey(event?.target?.value ?? '')}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>): void => setApiKey(event.target.value)}
                 placeholder="Enter your Gemini API Key"
               />
             }
@@ -64,7 +74,7 @@ const SetTokenAI: React.FC = () => {
           save
         </Button>
       </div>
-      {apiKeyStatus && <p style={{ marginTop: '8px', fontSize: '0.9em' }}>{apiKeyStatus}</p>}
+      {apiKeyStatus && <p className={styles.statusMessage}>{apiKeyStatus}</p>}
     </>
   );
 };

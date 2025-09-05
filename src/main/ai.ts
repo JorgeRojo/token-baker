@@ -71,7 +71,11 @@ export async function checkApiConnection(apiKey: string): Promise<void> {
     console.log(LOG_MESSAGES.GEMINI_CONNECTION_SUCCESS);
   } catch (error) {
     console.error(LOG_MESSAGES.ERROR_VERIFYING_CONNECTION, error);
-    throw new Error(ERROR_MESSAGES.GEMINI_CONNECTION_TEST_FAILED((error as Error).message));
+    throw new Error(
+      ERROR_MESSAGES.GEMINI_CONNECTION_TEST_FAILED(
+        error instanceof Error ? error.message : String(error)
+      )
+    );
   }
 }
 

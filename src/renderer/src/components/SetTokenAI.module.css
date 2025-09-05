@@ -1,0 +1,14 @@
+.container {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.inputContainer {
+  flex: 1;
+}
+
+.statusMessage {
+  margin-top: 8px;
+  font-size: 0.9em;
+}
