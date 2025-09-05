@@ -13,5 +13,5 @@ if (rootElement) {
     </StrictMode>
   );
 } else {
-  throw new Error("Could not find root element to mount to!");
+  throw new Error('Could not find root element to mount to!');
 }

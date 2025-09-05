@@ -6,7 +6,7 @@ enum ApiKeyStatusMessage {
   LOADED = 'API Key loaded successfully.',
   NOT_FOUND = 'No API Key found. Please enter one.',
   EMPTY = 'API Key cannot be empty.',
-  SAVED = 'API Key saved successfully!',
+  SAVED = 'API Key saved successfully!'
 }
 
 const SetTokenAI: React.FC = () => {
@@ -64,7 +64,9 @@ const SetTokenAI: React.FC = () => {
                 type="password"
                 id="gemini-api-key"
                 value={apiKey}
-                onChange={(event: React.ChangeEvent<HTMLInputElement>): void => setApiKey(event.target.value)}
+                onChange={(event?: React.ChangeEvent<HTMLInputElement>): void =>
+                  setApiKey(event?.target.value ?? '')
+                }
                 placeholder="Enter your Gemini API Key"
               />
             }

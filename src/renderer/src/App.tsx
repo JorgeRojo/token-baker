@@ -15,7 +15,7 @@ enum AIStatus {
   LOADING = 'Loading model...',
   LOADED = 'Model loaded!',
   ERROR = 'Error loading model',
-  GENERATING = 'Generating...',
+  GENERATING = 'Generating...'
 }
 
 const App: React.FC = () => {
@@ -99,7 +99,9 @@ const App: React.FC = () => {
               type="text"
               id="prompt-textarea"
               value={prompt}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>): void => setPrompt(event.target.value)}
+              onChange={(event?: React.ChangeEvent<HTMLInputElement>): void =>
+                setPrompt(event?.target.value ?? '')
+              }
             />
           </div>
           <div className={styles.marginTop16}>
