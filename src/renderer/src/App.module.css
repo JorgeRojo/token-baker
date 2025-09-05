@@ -12,7 +12,9 @@
 }
 
 .responsePre {
-  background: #f0f0f0;
+  border: solid 1px var(--ft-color-grey-2);
+  background: var(--ft-color-lightest);
+  color: var(--ft-color-darkest);
   padding: 16px;
   border-radius: 8px;
   white-space: pre-wrap;

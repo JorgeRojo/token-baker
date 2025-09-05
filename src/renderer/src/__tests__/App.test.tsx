@@ -1,6 +1,6 @@
-import { render, screen, fireEvent, waitFor, RenderResult } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, cleanup, RenderResult } from '@testing-library/react';
 import App from '../App';
-import { describe, it, vi, expect, beforeEach } from 'vitest';
+import { describe, it, vi, expect, beforeEach, afterEach } from 'vitest';
 
 // Mock the fratch-ui module
 
@@ -38,6 +38,8 @@ describe('App', () => {
     vi.clearAllMocks();
   });
 
+  afterEach(cleanup);
+
   it('should render the App component and show initial status', (): void => {
     // Arrange
     setup();
@@ -71,10 +73,8 @@ describe('App', () => {
   it('should generate tokens when the button is clicked', async (): Promise<void> => {
     // Arrange
     setup();
-    await waitFor(() => {
-      expect(screen.getByText('Model loaded!')).toBeInTheDocument();
-    });
-    const generateButton = screen.getByTestId('mock-button');
+    await screen.findByText('Model loaded!'); // Use findByText for async waiting
+    const generateButton = screen.getByRole('button', { name: '✨ Generate Tokens' });
 
     // Act
     fireEvent.click(generateButton);
@@ -91,10 +91,8 @@ describe('App', () => {
     // Arrange
     generateTokensMock.mockResolvedValueOnce({ success: false, error: 'Generation failed' });
     setup();
-    await waitFor(() => {
-      expect(screen.getByText('Model loaded!')).toBeInTheDocument();
-    });
-    const generateButton = screen.getByTestId('mock-button');
+    await screen.findByText('Model loaded!'); // Use findByText for async waiting
+    const generateButton = screen.getByRole('button', { name: '✨ Generate Tokens' });
 
     // Act
     fireEvent.click(generateButton);
@@ -108,11 +106,22 @@ describe('App', () => {
   it('should disable the generate button while loading', async (): Promise<void> => {
     // Arrange
     setup();
+    // Wait for the model to load and the button to become enabled initially
+    await screen.findByText('Model loaded!');
+    const generateButton = screen.getByRole('button', { name: '✨ Generate Tokens' });
+    expect(generateButton).not.toBeDisabled();
 
-    // Assert
-    expect(screen.getByTestId('mock-button')).toBeDisabled();
+    // Act - Simulate clicking the button to trigger loading state
+    fireEvent.click(generateButton);
+
+    // Assert - Check if the button is disabled and shows "Loading..."
     await waitFor(() => {
-      expect(screen.getByTestId('mock-button')).not.toBeDisabled();
+      expect(screen.getByRole('button', { name: 'Loading...' })).toBeDisabled();
+    });
+
+    // Assert - Wait for generation to complete and button to be enabled again
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: '✨ Generate Tokens' })).not.toBeDisabled();
     });
   });
 });

@@ -28,7 +28,7 @@ export const LOG_MESSAGES = {
 };
 
 export const GEMINI_URL_BASE =
-  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=';
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=';
 
 export const API_KEY_STORE_KEY = 'gemini-api-key';
 
