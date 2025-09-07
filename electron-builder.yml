@@ -11,10 +11,8 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 asarUnpack:
   - resources/**
-icon: build/icons/256x256.png
 win:
   executableName: Token Baker
-  icon: build/icons/icon.ico
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
@@ -28,17 +26,14 @@ mac:
     - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
     - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
   notarize: false
-  icon: build/icons/icon.icns
 dmg:
   artifactName: ${name}-${version}.${ext}
-  icon: build/icons/icon.icns
 linux:
   target:
     - snap
     - deb
   maintainer: electronjs.org
   category: Utility
-  icon: build/icons/png/512x512.png
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
