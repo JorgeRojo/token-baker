@@ -41,4 +41,4 @@ npmRebuild: false
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
 
-publish: never
+publish: []
