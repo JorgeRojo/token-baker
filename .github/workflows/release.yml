@@ -32,6 +32,8 @@ jobs:
 
       - name: Build application
         shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "${{ runner.os }}" == "Windows" ]; then
             npm run build:win
