@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor, cleanup, RenderResult } from '@testing-library/react';
-import App from '../App';
+import { App } from '../App';
 import { describe, it, vi, expect, beforeEach, afterEach } from 'vitest';
 
 // Mock the fratch-ui module
@@ -21,9 +21,12 @@ vi.mock('fratch-ui', (): object => ({
 }));
 
 // Stub window.api globally
-const loadModelMock = vi.fn((): Promise<{ success: boolean; error?: string }> => Promise.resolve({ success: true }));
-const generateTokensMock = vi.fn((): Promise<{ success: boolean; tokens?: string[]; error?: string }> =>
-  Promise.resolve({ success: true, tokens: ['red'] })
+const loadModelMock = vi.fn(
+  (): Promise<{ success: boolean; error?: string }> => Promise.resolve({ success: true })
+);
+const generateTokensMock = vi.fn(
+  (): Promise<{ success: boolean; tokens?: string[]; error?: string }> =>
+    Promise.resolve({ success: true, tokens: ['red'] })
 );
 
 vi.stubGlobal('api', {

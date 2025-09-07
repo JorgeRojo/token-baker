@@ -1,5 +1,5 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import path, { join } from 'path';
+import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import icon from '../../build/icon.png?asset';
 import { checkApiConnection, generateTokens, getDecryptedApiKey, saveApiKey } from './ai';

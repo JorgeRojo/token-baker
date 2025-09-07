@@ -6,8 +6,8 @@ import {
   ColorSchemeSwitcher,
   ModalProvider
 } from 'fratch-ui';
-import SetTokenAI from './components/SetTokenAI';
-import Layout from './components/Layout/Layout';
+import { SetTokenAI } from './components/SetTokenAI';
+import { Layout } from './components/Layout/Layout';
 import styles from './App.module.css';
 
 enum AIStatus {
@@ -18,7 +18,7 @@ enum AIStatus {
   GENERATING = 'Generating...'
 }
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const [prompt, setPrompt] = useState<string>(
     'A small confirmation modal with a title, text, and an "OK" button.'
   );
@@ -39,7 +39,7 @@ const App: React.FC = () => {
         } else {
           throw new Error(response.error || 'Unknown error loading model');
         }
-      } catch (error) {
+      } catch (error: unknown) {
         console.error('Failed to initialize AI model:', error);
         setStatus(AIStatus.ERROR);
       }
@@ -69,7 +69,7 @@ const App: React.FC = () => {
       } else {
         throw new Error(response.error || 'Unknown error generating tokens');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error during generation:', error);
       setOutput('An error occurred during generation.');
     } finally {
@@ -120,5 +120,3 @@ const App: React.FC = () => {
     </ColorSchemeProvider>
   );
 };
-
-export default App;

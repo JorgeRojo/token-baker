@@ -3,6 +3,6 @@ import styles from './Layout.module.css';
 
 type LayoutProps = PropsWithChildren;
 
-export default function Layout({ children }: LayoutProps): JSX.Element {
+export function Layout({ children }: LayoutProps): JSX.Element {
   return <div className={styles.layout}>{children}</div>;
 }

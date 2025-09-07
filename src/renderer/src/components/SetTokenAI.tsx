@@ -9,7 +9,7 @@ enum ApiKeyStatusMessage {
   SAVED = 'API Key saved successfully!'
 }
 
-const SetTokenAI: React.FC = () => {
+export const SetTokenAI: React.FC = () => {
   const [apiKey, setApiKey] = useState<string>('');
   const [apiKeyStatus, setApiKeyStatus] = useState<string>('');
 
@@ -25,7 +25,7 @@ const SetTokenAI: React.FC = () => {
         } else {
           setApiKeyStatus(ApiKeyStatusMessage.NOT_FOUND);
         }
-      } catch (error) {
+      } catch (error: unknown) {
         const message = error instanceof Error ? error.message : String(error);
         setApiKeyStatus(`Error loading API Key: ${message}`);
       }
@@ -47,7 +47,7 @@ const SetTokenAI: React.FC = () => {
       } else {
         setApiKeyStatus(`Error saving API Key: ${response.error}`);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
       setApiKeyStatus(`Error saving API Key: ${message}`);
     }
@@ -80,5 +80,3 @@ const SetTokenAI: React.FC = () => {
     </>
   );
 };
-
-export default SetTokenAI;
