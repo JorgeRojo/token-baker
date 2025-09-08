@@ -14,8 +14,6 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - name: Debug GH_PAT
-        run: echo "GH_PAT is: ${{ secrets.GH_PAT }}"
       - name: Checkout
         uses: actions/checkout@v4
         with:
