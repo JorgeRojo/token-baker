@@ -28,12 +28,7 @@ mac:
   notarize: false
 dmg:
   artifactName: ${name}-${version}.${ext}
-linux:
-  target:
-    - snap
-    - deb
-  maintainer: electronjs.org
-  category: Utility
+
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
