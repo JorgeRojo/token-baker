@@ -10,11 +10,9 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     permissions:
-    contents: write
-    issues: write
-    pull-requests: write
-  secrets:
-    GH_PAT: ${{ secrets.GH_PAT }}
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
