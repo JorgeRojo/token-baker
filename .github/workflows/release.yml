@@ -6,8 +6,57 @@ on:
       - main
 
 jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            script: build:mac
+          - os: ubuntu-latest
+            script: build:linux
+          - os: windows-latest
+            script: build:win
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Configure npm registry
+        run: |
+          npm config set registry https://registry.npmjs.org/
+          npm config set fetch-retries 5
+          npm config set fetch-retry-mintimeout 20000
+          npm config set fetch-retry-maxtimeout 120000
+      - name: Clean npm cache
+        run: npm cache clean --force
+      - name: Install dependencies
+        run: npm ci || npm install --no-package-lock
+      - name: Build app
+        run: npm run ${{ matrix.script }}
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}-artifacts
+          path: |
+            dist/*.AppImage
+            dist/*.snap
+            dist/*.deb
+            dist/*.rpm
+            dist/*.dmg
+            dist/*.exe
+            dist/*.msi
+          retention-days: 1
+
   release:
     name: Create Release
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -45,46 +94,15 @@ jobs:
           npx semantic-release
           echo "released=true" >> $GITHUB_OUTPUT
           echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
-
-  build:
-    name: Build ${{ matrix.os }}
-    needs: release
-    if: needs.release.outputs.released == 'true'
-    strategy:
-      matrix:
-        include:
-          - os: macos-latest
-            script: build:mac
-          - os: ubuntu-latest
-            script: build:linux
-          - os: windows-latest
-            script: build:win
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Download all artifacts
+        if: steps.release.outputs.released == 'true'
+        uses: actions/download-artifact@v4
         with:
-          ref: v${{ needs.release.outputs.version }}
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Configure npm registry
-        run: |
-          npm config set registry https://registry.npmjs.org/
-          npm config set fetch-retries 5
-          npm config set fetch-retry-mintimeout 20000
-          npm config set fetch-retry-maxtimeout 120000
-      - name: Clean npm cache
-        run: npm cache clean --force
-      - name: Install dependencies
-        run: npm ci || npm install --no-package-lock
-      - name: Build app
-        run: npm run ${{ matrix.script }}
+          path: artifacts
       - name: Upload artifacts to release
+        if: steps.release.outputs.released == 'true'
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         shell: bash
         run: |
-          find dist -type f \( -name "*.AppImage" -o -name "*.snap" -o -name "*.deb" -o -name "*.rpm" -o -name "*.dmg" -o -name "*.exe" -o -name "*.msi" \) -exec gh release upload v${{ needs.release.outputs.version }} {} --clobber \;
+          find artifacts -type f \( -name "*.AppImage" -o -name "*.snap" -o -name "*.deb" -o -name "*.rpm" -o -name "*.dmg" -o -name "*.exe" -o -name "*.msi" \) -exec gh release upload v${{ steps.release.outputs.version }} {} --clobber \;
